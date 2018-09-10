@@ -127,7 +127,7 @@ class App
   end
 
   def bitbucket_url
-    "https://bitbucket.org/#{bitbucket_repo}" if bitbucket_repo?
+    "#{Errbit::Config.bitbucket_url}/#{bitbucket_repo}" if bitbucket_repo?
   end
 
   def bitbucket_url_to_file(file)

@@ -33,6 +33,10 @@ Errbit::Config = Configurator.run(
   github_url:                ['GITHUB_URL', lambda do |values|
     values[:github_url].gsub(%r{/*\z}, '')
   end],
+  # bitbucket
+  bitbucket_url:             ['BITBUCKET_URL', lambda do |values|
+    values[:bitbucket_url].gsub(%r{/*\z}, '')
+  end],
   github_authentication:     ['GITHUB_AUTHENTICATION'],
   github_client_id:          ['GITHUB_CLIENT_ID'],
   github_secret:             ['GITHUB_SECRET'],
