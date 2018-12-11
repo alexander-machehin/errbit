@@ -131,7 +131,7 @@ class App
   end
 
   def bitbucket_url_to_file(file)
-    "#{bitbucket_url}/src/#{repo_branch}/#{file}"
+    "#{bitbucket_url}/browse/#{repo_branch}/#{file}"
   end
 
   def issue_tracker_configured?
