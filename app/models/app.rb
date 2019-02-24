@@ -7,6 +7,7 @@ class App
   field :api_key
   field :github_repo
   field :bitbucket_repo
+  field :bitbucket_sub_repos
   field :asset_host
   field :repository_branch
   field :current_app_version
@@ -126,12 +127,17 @@ class App
     bitbucket_repo.present?
   end
 
-  def bitbucket_url
-    "#{Errbit::Config.bitbucket_url}/#{bitbucket_repo}" if bitbucket_repo?
+  def bitbucket_url(sub_repos = nil)
+    "#{Errbit::Config.bitbucket_url}/#{sub_repos || bitbucket_repo}" if bitbucket_repo?
   end
 
   def bitbucket_url_to_file(file)
-    "#{bitbucket_url}/browse/#{file}?at=refs/heads/#{repo_branch}"
+    if Errbit::Config.bitbucket_sub_repos && file =~ /\Alib\//
+      url = "#{bitbucket_url(Errbit::Config.bitbucket_sub_repos)}/#{file.sub('lib/', '').sub('/', '/browse/')}"
+    else
+      url = "#{bitbucket_url}/browse/#{file}"
+    end
+    "#{url}?at=refs/heads/#{repo_branch}"
   end
 
   def issue_tracker_configured?
