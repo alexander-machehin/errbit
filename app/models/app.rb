@@ -132,8 +132,8 @@ class App
   end
 
   def bitbucket_url_to_file(file)
-    if Errbit::Config.bitbucket_sub_repos && file =~ /\Alib\//
-      url = "#{bitbucket_url(Errbit::Config.bitbucket_sub_repos)}/#{file.sub('lib/', '').sub('/', '/browse/')}"
+    if bitbucket_sub_repos && file =~ /\Alib\//
+      url = "#{bitbucket_url(bitbucket_sub_repos)}/#{file.sub('lib/', '').sub('/', '/browse/')}"
     else
       url = "#{bitbucket_url}/browse/#{file}"
     end
